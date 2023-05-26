@@ -1,0 +1,22 @@
+"""
+Uses constants to tell a mad libs story.
+"""
+
+# Fun fact: 6174 is known as Kaprekar's constant,
+# and it's a pretty mysterious number :)
+
+WIZARD = 'Mehran'
+NUMBER_OF_FRUIT = 6174
+FRUIT = 'mangoes'
+
+def main():
+    charecter_name = "Karel"
+    fav_fruit = "mangoes"
+    fruit_number = 6174
+    
+    print("There once was a wizard by the name of " + charecter_name +  " who loved to eat " + fav_fruit + ".")
+    print(charecter_name + " always kept a stash of " + str(fruit_number) + " mangoes in their house...")
+
+
+if __name__ == '__main__':
+    main()
