@@ -1,0 +1,20 @@
+from graphics import Canvas
+import time
+
+CANVAS_WIDTH = 500
+CANVAS_HEIGHT = 500
+
+
+def main():
+    canvas = Canvas(CANVAS_WIDTH, CANVAS_HEIGHT)
+    canvas.create_line(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT)
+    canvas.create_rectangle(70,70, 150,150, "blue")
+    canvas.create_rectangle(230, 150, CANVAS_WIDTH, CANVAS_HEIGHT)
+    canvas.create_oval(230,150, CANVAS_WIDTH, CANVAS_HEIGHT, "red")
+    canvas.create_image(0,200, 'simba.png')
+   
+    
+
+
+if __name__ == '__main__':
+    main()
