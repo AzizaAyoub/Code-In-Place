@@ -1,0 +1,31 @@
+# Moving Square
+
+from graphics import Canvas
+import time
+CANVAS_WIDTH = 400
+CANVAS_HEIGHT = 400
+SQUARE_SIZE = 50
+VELOCITY = 2
+DELAY = 0.001
+
+def main():
+    # Make a canvas.
+    canvas = Canvas(CANVAS_WIDTH ,CANVAS_HEIGHT )
+    # Draw a square.
+    start_x = 10
+    start_y =CANVAS_HEIGHT/2 - SQUARE_SIZE/2
+    square = canvas.create_rectangle(start_x,start_y, SQUARE_SIZE,start_y + SQUARE_SIZE,"red")
+    # Move the square to the middle of the canvas
+    # Until the half of the square reachs to the middle of the canvas width
+    # Use animation loop
+    while start_x + SQUARE_SIZE/2 < CANVAS_HEIGHT/2:
+        canvas.moveto(square, start_x,start_y)
+        # Add pixels as VELOCITY to the start_x coordinates
+        start_x += VELOCITY
+        # Delay between each update
+
+        time.sleep(DELAY)
+        
+if __name__== '__main__':
+    main()
+    
