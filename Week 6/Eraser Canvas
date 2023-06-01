@@ -1,0 +1,68 @@
+"""
+This program implements an 'eraser' on a canvas. 
+
+The canvas consists of a grid of blue 'cells' which are drawn 
+as rectangles on the screen. We then create an eraser rectangle
+which, when dragged around the canvas, sets all of the rectangles 
+it is in contact with to white.
+"""
+from graphics import Canvas
+import time
+
+CANVAS_WIDTH = 400
+CANVAS_HEIGHT = 400
+
+CELL_SIZE = 40
+ERASER_SIZE = 20
+# figure out how many rows of cells we need
+# figure out how many columns of cells we needd
+
+def main():
+    canvas = Canvas(CANVAS_WIDTH, CANVAS_HEIGHT)
+    rows = CANVAS_HEIGHT // CELL_SIZE
+    calumns = CANVAS_WIDTH // CELL_SIZE
+    
+    for row in range(calumns):
+        for cal in range(rows):
+            start_x = cal * CELL_SIZE
+            start_y = row * CELL_SIZE
+            right_x = start_x + CELL_SIZE
+            bottom_y = start_y + CELL_SIZE
+            rec = canvas.create_rectangle(start_x,start_y,right_x,bottom_y,'blue')
+            canvas.set_outline_color(rec,'black')
+            
+    canvas.wait_for_click()
+    mouse_x = canvas.get_mouse_x()
+    mouse_y = canvas.get_mouse_y()
+    left_x = mouse_x
+    top_y = mouse_y
+    right_x = left_x + ERASER_SIZE
+    bottom_y = top_y + ERASER_SIZE
+    eraser = canvas.create_rectangle(left_x,top_y,right_x,bottom_y,'red')
+    
+
+    while True:
+        mouse_x = canvas.get_mouse_x()
+        mouse_y = canvas.get_mouse_y()
+        canvas.moveto(eraser,mouse_x,mouse_y)
+        time.sleep(0.001)
+        erase_objt(canvas,eraser)
+        
+def erase_objt(canvas,eraser):
+    mouse_x = canvas.get_mouse_x()
+    mouse_y = canvas.get_mouse_y()
+    
+    right_x = mouse_x + ERASER_SIZE
+    bottom_y = mouse_y + ERASER_SIZE
+    
+    object = canvas.find_overlapping(mouse_x,mouse_y,right_x,bottom_y)
+    print(object)
+    for value in object:
+        if value != eraser:
+            canvas.set_color(value,'white')
+    
+     # The right coordinate of the cell is CELL_SIZE pixels away from the left
+     # The bottom coordinate of the cell is CELL_SIZE pixels away from the top
+            
+if __name__ == '__main__':
+    main()
